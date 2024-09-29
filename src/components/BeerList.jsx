@@ -4,12 +4,14 @@ import useBeerStore from "../store/beerStore";
 import BeerCard from "./BeerCard";
 import { Link, useSearchParams } from "react-router-dom";
 import BeerFilter from "./BeerFilter";
+import Loading from "./Loading";
 
 const BeerList = () => {
-  const { beers, fetchBeers } = useBeerStore();
+  const { beers, fetchBeers, loading } = useBeerStore();
   const [filterCriteria, setFilterCriteria] = useState({});
   const [sortCriteria, setSortCriteria] = useState({ abv: null, price: null });
   const [searchParams, setSearchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setSearchParams({});
@@ -50,12 +52,9 @@ const BeerList = () => {
     const updatedParams = {
       ...Object.fromEntries(searchParams.entries()),
     };
-
     delete updatedParams.price;
     delete updatedParams.abv;
-
     updatedParams[name] = value;
-
     setSearchParams(updatedParams);
   };
 
@@ -89,6 +88,17 @@ const BeerList = () => {
       return 0;
     });
 
+  const itemsPerPage = 9;
+  const totalPages = Math.round(filteredBeers.length / itemsPerPage);
+
+  const indexOfLastBeer = currentPage * itemsPerPage;
+  const indexOfFirstBeer = indexOfLastBeer - itemsPerPage;
+  const currentBeers = filteredBeers.slice(indexOfFirstBeer, indexOfLastBeer);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="beer-list-container">
       <h1>Beer Recomendation</h1>
@@ -97,8 +107,9 @@ const BeerList = () => {
         handleFilterChange={handleFilterChange}
         handleSortChange={handleSortChange}
       />
+      {loading && <Loading />}
       <div className="beer-list">
-        {filteredBeers.map((beer) => (
+        {currentBeers.map((beer) => (
           <Link
             key={beer.id}
             to={`/beer-details/${beer.id}`}
@@ -106,6 +117,19 @@ const BeerList = () => {
           >
             <BeerCard beer={beer} />
           </Link>
+        ))}
+      </div>
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageChange(index + 1)}
+            style={{
+              border: currentPage === index + 1 ? "1px solid #292566" : "none",
+            }}
+          >
+            {index + 1}
+          </button>
         ))}
       </div>
     </div>

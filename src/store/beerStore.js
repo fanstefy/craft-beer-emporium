@@ -15,6 +15,7 @@ const checkImageURL = (url) => {
 const useBeerStore = create((set, get) => ({
   beers: [],
   beerById: {},
+  loading: true,
 
   fetchBeers: async () => {
     const response = await fetch(
@@ -33,6 +34,7 @@ const useBeerStore = create((set, get) => ({
       })
     );
     set({ beers: updatedBeers });
+    set({ loading: false });
   },
 
   getBeerByID: (id) => {
