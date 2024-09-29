@@ -10,5 +10,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 24px;
+
+    .beer-link {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 }

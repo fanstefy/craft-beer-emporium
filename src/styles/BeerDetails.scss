@@ -1,0 +1,111 @@
+h1 {
+  color: #555;
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  font-style: normal;
+
+  span {
+    color: #292566;
+  }
+}
+
+.beer-details {
+  width: 700px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  gap: 20px;
+
+  .text-content {
+    flex: 1;
+    padding: 20px;
+
+    h4 {
+      font-size: 28px;
+      color: #292566;
+      margin-bottom: 10px;
+
+      font-family: "Libre Baskerville", serif;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    p {
+      font-size: 18px;
+      margin: 5px 0;
+
+      span {
+        font-weight: bold;
+        color: #111;
+      }
+    }
+
+    .brand-wrapper,
+    .style-wrapper,
+    .details-wrapper,
+    .abv-wrapper,
+    .price-wrapper {
+      display: flex;
+
+      font-family: "Inria Sans", sans-serif;
+      font-weight: bold;
+      font-style: normal;
+
+      .label {
+        color: #555;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .image-wrapper {
+    flex-shrink: 0;
+    max-width: 300px;
+    border-radius: 8px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  .custom-btn-style {
+    margin-top: 1rem;
+    padding: 7px 16px;
+    color: #fff;
+    background-color: #292566;
+    border: 0;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+
+    &:hover {
+      background-color: #d6a437;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+
+    .image-wrapper {
+      max-width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+}

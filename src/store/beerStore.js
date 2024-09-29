@@ -1,22 +1,5 @@
-// import { create } from "zustand";
-
-// const useBeerStore = create((set) => ({
-//   beers: [],
-
-//   fetchBeers: async () => {
-//     const response = await fetch(
-//       "https://mocki.io/v1/872c2ebd-700d-4cb9-abe5-575a6989e116"
-//     );
-//     const data = await response.json();
-//     set({ beers: data });
-//   },
-// }));
-
-// export default useBeerStore;
-
 import { create } from "zustand";
 
-// const placeholderImage = "https://via.placeholder.com/150";
 const placeholderImage =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png?20200912122019";
 
@@ -29,8 +12,9 @@ const checkImageURL = (url) => {
   });
 };
 
-const useBeerStore = create((set) => ({
+const useBeerStore = create((set, get) => ({
   beers: [],
+  beerById: {},
 
   fetchBeers: async () => {
     const response = await fetch(
@@ -48,8 +32,13 @@ const useBeerStore = create((set) => ({
         };
       })
     );
-
     set({ beers: updatedBeers });
+  },
+
+  getBeerByID: (id) => {
+    const beers = get().beers;
+    const beer = beers.find((beer) => beer.id === id);
+    set({ beerById: beer });
   },
 }));
 
