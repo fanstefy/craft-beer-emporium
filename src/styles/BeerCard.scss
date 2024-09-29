@@ -1,0 +1,47 @@
+.beer-card {
+  border: 1px solid rgb(217 216 216);
+  font-size: 17px;
+  text-align: center;
+  color: #000;
+  border-radius: 1.5rem;
+
+  .image-wrapper {
+    height: 155px;
+    background-color: #edf2e3;
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+    padding-top: 20px;
+
+    img {
+      height: 130px;
+    }
+  }
+
+  .text-content {
+    padding: 0px 15px 15px 15px;
+
+    h4 {
+      text-align: left;
+      color: #292566;
+      font-family: "Libre Baskerville", serif;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .price-wrapper,
+    .abv-wrapper {
+      display: flex;
+      justify-content: space-between;
+
+      font-family: "Inria Sans", sans-serif;
+      font-weight: 300;
+      font-style: normal;
+
+      .abv,
+      .price {
+        font-weight: 700;
+        font-size: 14px;
+      }
+    }
+  }
+}
