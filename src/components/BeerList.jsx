@@ -1,20 +1,104 @@
 import "../styles/BeerList.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useBeerStore from "../store/beerStore";
 import BeerCard from "./BeerCard";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+import BeerFilter from "./BeerFilter";
 
 const BeerList = () => {
   const { beers, fetchBeers } = useBeerStore();
+  const [filterCriteria, setFilterCriteria] = useState({});
+  const [sortCriteria, setSortCriteria] = useState({ abv: null, price: null });
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    setSearchParams({});
+  }, []);
 
   useEffect(() => {
     fetchBeers();
   }, [fetchBeers]);
 
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilterCriteria((prevCriteria) => ({
+      ...prevCriteria,
+      [name]: value,
+    }));
+    const updatedParams = {
+      ...Object.fromEntries(searchParams.entries()),
+      ...{ [name]: value },
+    };
+    setSearchParams(updatedParams);
+  };
+
+  const handleSortChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name === "price") {
+      setSortCriteria({
+        price: value,
+        abv: null,
+      });
+    } else if (name === "abv") {
+      setSortCriteria({
+        abv: value,
+        price: null,
+      });
+    }
+
+    const updatedParams = {
+      ...Object.fromEntries(searchParams.entries()),
+    };
+
+    delete updatedParams.price;
+    delete updatedParams.abv;
+
+    updatedParams[name] = value;
+
+    setSearchParams(updatedParams);
+  };
+
+  const getPriceValue = (priceStr) => {
+    return parseFloat(priceStr.replace("$", ""));
+  };
+
+  const filteredBeers = beers
+    .filter((beer) => {
+      const matchesBrand = filterCriteria.brand
+        ? beer.brand.toLowerCase().includes(filterCriteria.brand.toLowerCase())
+        : true;
+      const matchesStyle = filterCriteria.style
+        ? beer.style.toLowerCase().includes(filterCriteria.style.toLowerCase())
+        : true;
+      return matchesBrand && matchesStyle;
+    })
+    .sort((a, b) => {
+      if (sortCriteria.abv) {
+        if (sortCriteria.abv === "increasing")
+          return parseFloat(a.abv) - parseFloat(b.abv);
+        if (sortCriteria.abv === "decreasing")
+          return parseFloat(b.abv) - parseFloat(a.abv);
+      }
+      if (sortCriteria.price) {
+        if (sortCriteria.price === "increasing")
+          return getPriceValue(a.price) - getPriceValue(b.price);
+        if (sortCriteria.price === "decreasing")
+          return getPriceValue(b.price) - getPriceValue(a.price);
+      }
+      return 0;
+    });
+
   return (
     <div className="beer-list-container">
+      <h1>Beer Recomendation</h1>
+      <BeerFilter
+        sortCriteria={sortCriteria}
+        handleFilterChange={handleFilterChange}
+        handleSortChange={handleSortChange}
+      />
       <div className="beer-list">
-        {beers.map((beer) => (
+        {filteredBeers.map((beer) => (
           <Link
             key={beer.id}
             to={`/beer-details/${beer.id}`}

@@ -1,16 +1,12 @@
-h1 {
+h2 {
   color: #555;
   text-align: center;
   margin-top: 4rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 
   font-family: "Libre Baskerville", serif;
   font-weight: 700;
   font-style: normal;
-
-  span {
-    color: #292566;
-  }
 }
 
 .beer-details {
@@ -29,8 +25,7 @@ h1 {
     flex: 1;
     padding: 20px;
 
-    h4 {
-      font-size: 28px;
+    h3 {
       color: #292566;
       margin-bottom: 10px;
 

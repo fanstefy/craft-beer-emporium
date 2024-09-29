@@ -19,12 +19,10 @@ const BeerDetails = () => {
 
   return (
     <>
-      <h1>
-        Beer <span>Details</span>
-      </h1>
+      <h2>Beer Details</h2>
       <div className="beer-details">
         <div className="text-content">
-          <h4>{beerById?.name}</h4>
+          <h3>{beerById?.name}</h3>
           <p>{beerById?.details}</p>
 
           <div className="brand-wrapper">

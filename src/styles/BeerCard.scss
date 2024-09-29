@@ -36,7 +36,8 @@
     }
 
     .price-wrapper,
-    .abv-wrapper {
+    .abv-wrapper,
+    .brand-wrapper {
       display: flex;
       justify-content: space-between;
 
@@ -45,7 +46,8 @@
       font-style: normal;
 
       .abv,
-      .price {
+      .price,
+      .brand {
         font-weight: 700;
         font-size: 14px;
       }

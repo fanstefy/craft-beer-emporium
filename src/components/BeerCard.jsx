@@ -8,6 +8,10 @@ const BeerCard = ({ beer }) => {
       </div>
       <div className="text-content">
         <h4>{beer.name}</h4>
+        <div className="brand-wrapper">
+          <div className="label">brand</div>
+          <div className="brand">{beer.brand}</div>
+        </div>
         <div className="abv-wrapper">
           <div className="label">abv</div>
           <div className="abv">{beer.abv}</div>
