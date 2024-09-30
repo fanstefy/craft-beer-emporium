@@ -33,8 +33,7 @@ const useBeerStore = create((set, get) => ({
         };
       })
     );
-    set({ beers: updatedBeers });
-    set({ loading: false });
+    set({ beers: updatedBeers, loading: false });
   },
 
   getBeerByID: (id) => {

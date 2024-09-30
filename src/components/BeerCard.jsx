@@ -12,6 +12,10 @@ const BeerCard = ({ beer }) => {
           <div className="label">brand</div>
           <div className="brand">{beer.brand}</div>
         </div>
+        <div className="style-wrapper">
+          <div className="label">style</div>
+          <div className="style">{beer.style}</div>
+        </div>
         <div className="abv-wrapper">
           <div className="label">abv</div>
           <div className="abv">{beer.abv}</div>

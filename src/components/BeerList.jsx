@@ -32,6 +32,7 @@ const BeerList = () => {
       ...{ [name]: value },
     };
     setSearchParams(updatedParams);
+    setCurrentPage(1);
   };
 
   const handleSortChange = (e) => {
@@ -89,12 +90,13 @@ const BeerList = () => {
     });
 
   const itemsPerPage = 9;
-  const totalPages = Math.round(filteredBeers.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredBeers.length / itemsPerPage);
 
   const indexOfLastBeer = currentPage * itemsPerPage;
   const indexOfFirstBeer = indexOfLastBeer - itemsPerPage;
   const currentBeers = filteredBeers.slice(indexOfFirstBeer, indexOfLastBeer);
-
+  console.log("filteredBeers: ", filteredBeers);
+  console.log("currentBeers: ", currentBeers);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
