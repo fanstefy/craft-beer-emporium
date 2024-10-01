@@ -21,7 +21,7 @@ const BeerDetails = () => {
 
   return (
     <>
-      <h2>Beer Details</h2>
+      <h1>Beer Details</h1>
       <div className="beer-details">
         <div className="text-content">
           <h3>{beerById.name}</h3>
@@ -50,7 +50,7 @@ const BeerDetails = () => {
           <Button
             title="Buy"
             customBtnStyle="custom-btn-style"
-            buyProduct={buyProduct}
+            onClick={buyProduct}
           />
         </div>
         <div className="img-wrapper">

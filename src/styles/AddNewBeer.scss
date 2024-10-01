@@ -1,0 +1,50 @@
+.add-new-beer {
+  .add-new-beer-btn {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    padding: 7px 16px;
+    color: #292566;
+    border: 1px solid #292566;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: fit-content;
+
+    &:hover {
+      background-color: #292566;
+      color: #fff;
+      transform: skew();
+    }
+  }
+
+  margin-bottom: 4rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-bottom: 15px;
+    font-family: "Inria Sans", sans-serif;
+    font-weight: 300;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 4px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: 0.4s ease;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: #292566;
+    outline: none;
+    box-shadow: 0 0 5px #29256644;
+  }
+}

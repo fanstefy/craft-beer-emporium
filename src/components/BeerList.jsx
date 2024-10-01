@@ -2,25 +2,23 @@ import "../styles/BeerList.scss";
 import { useEffect, useState } from "react";
 import useBeerStore from "../store/beerStore";
 import BeerCard from "./BeerCard";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import BeerFilter from "./BeerFilter";
 import Loading from "./Loading";
+import Button from "./Button";
 
 const BeerList = () => {
-  const { beers, fetchBeers, loading } = useBeerStore();
+  const { beers, loading } = useBeerStore();
   const [filterCriteria, setFilterCriteria] = useState({});
   const [sortCriteria, setSortCriteria] = useState({ abv: null, price: null });
   const [searchParams, setSearchParams] = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setSearchParams({});
   }, []);
-
-  useEffect(() => {
-    fetchBeers();
-  }, [fetchBeers]);
-
+  console.log("beers: ", beers);
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     setFilterCriteria((prevCriteria) => ({
@@ -95,8 +93,6 @@ const BeerList = () => {
   const indexOfLastBeer = currentPage * itemsPerPage;
   const indexOfFirstBeer = indexOfLastBeer - itemsPerPage;
   const currentBeers = filteredBeers.slice(indexOfFirstBeer, indexOfLastBeer);
-  console.log("filteredBeers: ", filteredBeers);
-  console.log("currentBeers: ", currentBeers);
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -109,6 +105,18 @@ const BeerList = () => {
         handleFilterChange={handleFilterChange}
         handleSortChange={handleSortChange}
       />
+      {/* <Button
+        title="Management View"
+        customBtnStyle="management-view-btn"
+        onClick={() => navigate("/management")}
+      /> */}
+      <div className="button-container">
+        <Button
+          title="Management View"
+          customBtnStyle="management-view-btn"
+          onClick={() => navigate("/management")}
+        />
+      </div>
       {loading && <Loading />}
       <div className="beer-list">
         {currentBeers.map((beer) => (

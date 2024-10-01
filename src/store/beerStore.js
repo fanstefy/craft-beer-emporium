@@ -16,10 +16,12 @@ const useBeerStore = create((set, get) => ({
   beers: [],
   beerById: {},
   loading: true,
+  top10RatedBeerBrands: [],
 
   fetchBeers: async () => {
     const response = await fetch(
-      "https://mocki.io/v1/872c2ebd-700d-4cb9-abe5-575a6989e116"
+      //   "https://mocki.io/v1/872c2ebd-700d-4cb9-abe5-575a6989e116"
+      "./beerData.json"
     );
     const data = await response.json();
 
@@ -37,9 +39,26 @@ const useBeerStore = create((set, get) => ({
   },
 
   getBeerByID: (id) => {
-    const beers = get().beers;
+    const beers = get().beers; //  beers = []; ?
     const beer = beers.find((beer) => beer.id === id);
     set({ beerById: beer });
+  },
+
+  getTopRatedBeerBrands: () => {
+    const top10Beers = get()
+      .beers.sort((a, b) => b.rating.average - a.rating.average)
+      .slice(0, 10)
+      .map((beer) => {
+        return { brand: beer.brand, rating: beer.rating };
+      });
+    set({ top10RatedBeerBrands: top10Beers });
+  },
+
+  addNewBeer: (newBeer) => {
+    const beers = get().beers;
+    const newBeerId = beers.length + 1;
+    const updatedBeers = [...beers, { ...newBeer, id: newBeerId }];
+    set({ beers: updatedBeers });
   },
 }));
 

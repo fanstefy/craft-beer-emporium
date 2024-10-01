@@ -1,9 +1,12 @@
 .loading-spinner {
-  display: flex;
+  display: block;
+  width: fit-content;
+  margin: auto;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 55vh;
+  height: 13vh;
+  margin-top: 7rem;
   font-family: Arial, sans-serif;
   color: #333;
 
