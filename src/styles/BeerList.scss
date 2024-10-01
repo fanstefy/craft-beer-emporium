@@ -1,19 +1,20 @@
 .beer-list-container {
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   height: auto;
   margin: 0 auto;
-  padding: 0 30px 30px 30px;
+  padding: 0 15px 30px;
 
   h1 {
     color: #555;
     text-align: center;
+    font-size: 2rem;
   }
 
   .beer-list {
     width: 100%;
-    height: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 24px;
     margin-top: 4rem;
 
@@ -27,20 +28,22 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
-  }
+    flex-wrap: wrap;
 
-  .pagination button {
-    margin: 0 5px;
-    padding: 8px 6px;
-    background-color: #ffffff;
-    color: #555;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    border: none;
-  }
+    button {
+      margin: 0 5px;
+      padding: 8px 12px;
+      background-color: #ffffff;
+      color: #555;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      border: none;
+      font-size: 1rem;
 
-  .pagination button:hover {
-    border: 1px solid #007bff;
+      &:hover {
+        border: 1px solid #007bff;
+      }
+    }
   }
 
   .button-container {
@@ -48,6 +51,7 @@
     justify-content: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
+
     .management-view-btn {
       padding: 10px 20px;
       font-size: 1rem;
@@ -63,6 +67,44 @@
         color: #fff;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .beer-list-container {
+    padding: 0 10px;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    .beer-list {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .pagination button {
+      padding: 6px 8px;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .beer-list-container {
+    padding: 0 5px;
+
+    h1 {
+      font-size: 1.2rem;
+    }
+
+    .beer-list {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+
+    .pagination button {
+      padding: 5px 6px;
+      font-size: 0.8rem;
     }
   }
 }

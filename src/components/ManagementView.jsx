@@ -1,6 +1,6 @@
+import "../styles/ManagementView.scss";
 import { useEffect } from "react";
 import useBeerStore from "../store/beerStore";
-import "../styles/ManagementView.scss";
 import ReactApexChart from "react-apexcharts";
 import AddNewBeer from "./AddNewBeer";
 

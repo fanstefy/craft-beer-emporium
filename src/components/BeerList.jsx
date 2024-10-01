@@ -100,19 +100,16 @@ const BeerList = () => {
   return (
     <div className="beer-list-container">
       <h1>Beer Recomendation</h1>
+
       <BeerFilter
         sortCriteria={sortCriteria}
         handleFilterChange={handleFilterChange}
         handleSortChange={handleSortChange}
       />
-      {/* <Button
-        title="Management View"
-        customBtnStyle="management-view-btn"
-        onClick={() => navigate("/management")}
-      /> */}
+
       <div className="button-container">
         <Button
-          title="Management View"
+          title="Management Page"
           customBtnStyle="management-view-btn"
           onClick={() => navigate("/management")}
         />
