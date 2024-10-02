@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/AddNewBeer.scss";
 import Button from "./Button";
-import useBeerStore from "../store/beerStore";
+import { useBeerStore } from "../store/beerStore";
 
 const AddNewBeer = () => {
   const addNewBeer = useBeerStore((store) => store.addNewBeer);
@@ -39,7 +39,6 @@ const AddNewBeer = () => {
       abv: newBeer.abv + "%",
     });
 
-    // Reset the form
     setNewBeer({
       price: "",
       name: "",

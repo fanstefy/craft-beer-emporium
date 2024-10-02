@@ -12,12 +12,13 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
+    font-family: "Inria Sans", sans-serif;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s, box-shadow 0.3s;
 
     &:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      border-color: #292566;
+      box-shadow: 0 0 5px #292566;
       outline: none;
     }
   }
@@ -27,14 +28,15 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1rem;
+    font-family: "Inria Sans", sans-serif;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s, box-shadow 0.3s;
     color: gray;
 
     &:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      border-color: #292566;
+      box-shadow: 0 0 5px #292566;
       outline: none;
     }
   }

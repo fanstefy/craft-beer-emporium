@@ -1,11 +1,13 @@
 import "../styles/BeerList.scss";
 import { useEffect, useState } from "react";
-import useBeerStore from "../store/beerStore";
+import { useBeerStore } from "../store/beerStore";
 import BeerCard from "./BeerCard";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import BeerFilter from "./BeerFilter";
 import Loading from "./Loading";
 import Button from "./Button";
+import { faArrowRight, faUserShield } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const BeerList = () => {
   const { beers, loading } = useBeerStore();
@@ -18,7 +20,7 @@ const BeerList = () => {
   useEffect(() => {
     setSearchParams({});
   }, []);
-  console.log("beers: ", beers);
+
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     setFilterCriteria((prevCriteria) => ({
@@ -90,9 +92,19 @@ const BeerList = () => {
   const itemsPerPage = 9;
   const totalPages = Math.ceil(filteredBeers.length / itemsPerPage);
 
-  const indexOfLastBeer = currentPage * itemsPerPage;
-  const indexOfFirstBeer = indexOfLastBeer - itemsPerPage;
-  const currentBeers = filteredBeers.slice(indexOfFirstBeer, indexOfLastBeer);
+  const maxPageButtons = 5;
+  let startPage = Math.max(1, currentPage - Math.floor(maxPageButtons / 2));
+  let endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
+
+  if (endPage - startPage < maxPageButtons - 1) {
+    startPage = Math.max(1, endPage - maxPageButtons + 1);
+  }
+
+  const pages = Array.from(
+    { length: endPage - startPage + 1 },
+    (_, index) => startPage + index
+  );
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -109,35 +121,65 @@ const BeerList = () => {
 
       <div className="button-container">
         <Button
-          title="Management Page"
+          title="Admin"
           customBtnStyle="management-view-btn"
           onClick={() => navigate("/management")}
+          iconLeft={faUserShield}
         />
       </div>
+
+      {loading && <Loading />}
+
       {loading && <Loading />}
       <div className="beer-list">
-        {currentBeers.map((beer) => (
-          <Link
-            key={beer.id}
-            to={`/beer-details/${beer.id}`}
-            className="beer-link"
-          >
-            <BeerCard beer={beer} />
-          </Link>
-        ))}
+        {beers
+          .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+          .map((beer) => (
+            <Link
+              key={beer.id}
+              to={`/beer-details/${beer.id}`}
+              className="beer-link"
+            >
+              <BeerCard beer={beer} />
+            </Link>
+          ))}
       </div>
+
       <div className="pagination">
-        {Array.from({ length: totalPages }, (_, index) => (
-          <button
-            key={index}
-            onClick={() => handlePageChange(index + 1)}
-            style={{
-              border: currentPage === index + 1 ? "1px solid #292566" : "none",
-            }}
-          >
-            {index + 1}
-          </button>
-        ))}
+        {currentPage > 1 ? (
+          <Button
+            title="Previous"
+            onClick={() => handlePageChange(currentPage - 1)}
+            customBtnStyle="next-prev-btn"
+            iconLeft={faArrowLeft}
+          />
+        ) : (
+          currentPage === 1 && <Button />
+        )}
+        <div>
+          {pages.map((page) => (
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              style={{
+                color: currentPage === page ? "#000" : "#828181",
+              }}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
+
+        {currentPage < totalPages ? (
+          <Button
+            title="Next"
+            onClick={() => handlePageChange(currentPage + 1)}
+            customBtnStyle="next-prev-btn"
+            iconRight={faArrowRight}
+          />
+        ) : (
+          currentPage === totalPages && <Button />
+        )}
       </div>
     </div>
   );

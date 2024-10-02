@@ -9,6 +9,7 @@
     cursor: pointer;
     transition: 0.3s ease;
     width: fit-content;
+    font-family: "Inria Sans", sans-serif;
 
     &:hover {
       background-color: #292566;
@@ -28,6 +29,7 @@
     margin-bottom: 15px;
     font-family: "Inria Sans", sans-serif;
     font-weight: 300;
+    font-size: 14px;
   }
 
   input,

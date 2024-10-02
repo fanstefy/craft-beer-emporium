@@ -4,7 +4,7 @@ import BeerList from "./components/BeerList";
 import BeerDetails from "./components/BeerDetails";
 import ManagementView from "./components/ManagementView";
 import { useEffect } from "react";
-import useBeerStore from "./store/beerStore";
+import { useBeerStore } from "./store/beerStore";
 
 function App() {
   const fetchBeers = useBeerStore((store) => store.fetchBeers);

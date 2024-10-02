@@ -4,6 +4,7 @@
   height: auto;
   margin: 0 auto;
   padding: 0 15px 30px;
+  position: relative;
 
   h1 {
     color: #555;
@@ -26,40 +27,48 @@
 
   .pagination {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin-top: 20px;
     flex-wrap: wrap;
+
+    div {
+      display: flex;
+    }
 
     button {
       margin: 0 5px;
       padding: 8px 12px;
       background-color: #ffffff;
-      color: #555;
+      color: #828181;
       cursor: pointer;
       transition: background-color 0.3s, color 0.3s;
       border: none;
       font-size: 1rem;
+    }
 
+    .next-prev-btn {
+      font-family: "Inria Sans", sans-serif;
       &:hover {
-        border: 1px solid #007bff;
+        color: none;
       }
     }
   }
 
   .button-container {
-    display: flex;
     justify-content: center;
-    margin-top: 1rem;
     margin-bottom: 1rem;
+    position: absolute;
+    top: -50px;
+    right: 15px;
 
     .management-view-btn {
-      padding: 10px 20px;
+      padding: 8px 7px;
       font-size: 1rem;
-      color: #292566;
-      border: 2px solid #292566;
+      color: #575757;
+      border: 1px solid #292566;
       border-radius: 0.2rem;
       cursor: pointer;
-      background-color: #fff;
+      background-color: #edf2e3;
       transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s;
 
       &:hover {

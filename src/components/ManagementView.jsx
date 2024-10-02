@@ -1,6 +1,6 @@
 import "../styles/ManagementView.scss";
 import { useEffect } from "react";
-import useBeerStore from "../store/beerStore";
+import { useBeerStore } from "../store/beerStore";
 import ReactApexChart from "react-apexcharts";
 import AddNewBeer from "./AddNewBeer";
 
@@ -11,7 +11,7 @@ const ManagementView = () => {
   const top10RatedBeerBrands = useBeerStore(
     (state) => state.top10RatedBeerBrands
   );
-  console.log("top10RatedBeerBrands: ", top10RatedBeerBrands);
+
   useEffect(() => {
     getTop10RatedBeerBrands();
   }, []);
