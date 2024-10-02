@@ -132,7 +132,7 @@ const BeerList = () => {
 
       {loading && <Loading />}
       <div className="beer-list">
-        {beers
+        {filteredBeers
           .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
           .map((beer) => (
             <Link
