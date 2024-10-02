@@ -7,15 +7,5 @@ Items/beers are shown in <b>Home page</b>. You can click on particular beer and 
 
 You'll need Node and Visual Studio Code/iItellij.
 Then clone repo and in the project directory, you can run:
-npm install
-npm start
-
-App will run in the development mode.
-Open htto://localhost:3000 to view it in your browser.
-
-The page will reload when you make changes.
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.
+# npm install
+# npm start
