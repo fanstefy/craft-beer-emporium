@@ -130,7 +130,6 @@ const BeerList = () => {
 
       {loading && <Loading />}
 
-      {loading && <Loading />}
       <div className="beer-list">
         {filteredBeers
           .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
